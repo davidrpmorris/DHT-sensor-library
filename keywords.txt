@@ -17,6 +17,6 @@ readTemperature KEYWORD2
 convertCtoF KEYWORD2
 convertFtoC KEYWORD2
 computeHeatIndex KEYWORD2
+computeAbsoluteHumidity KEYWORD2
 readHumidity KEYWORD2
 read KEYWORD2
-

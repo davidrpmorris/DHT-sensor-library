@@ -120,6 +120,34 @@ float DHT::computeHeatIndex(float temperature, float percentHumidity, bool isFah
   return isFahrenheit ? hi : convertFtoC(hi);
 }
 
+//boolean isFahrenheit: True == Fahrenheit; False == Celcius
+float DHT::computeAbsoluteHumidity(float temperature, float percentHumidity) {
+  // Using Vaisala equations from https://www.vaisala.com/sites/default/files/documents/Humidity_Conversion_Formulas_B210973EN-F.pdf
+  float ah;
+
+  // Constants for saturation vapour pressure calculation
+  Tn = 240.7263
+
+  m = 7.591386
+
+  exponent = m * temperature / (temperature + Tn)
+
+  A = 6.116441
+
+  // saturation vapour pressure in hPa
+  saturationVapourPressure = A * pow(10, exponent)
+
+  vapourPressure = percentHumidity * saturationVapourPressure
+
+  // C constant is g.K/J
+  C = 2.16679
+
+  // absolute humidity in g/m3
+  ah = C * vapourPressure / temperature
+
+  return ah;
+}
+
 boolean DHT::read(bool force) {
   // Check if sensor was read less than two seconds ago and return early
   // to use last reading.
