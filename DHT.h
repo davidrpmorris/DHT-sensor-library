@@ -43,7 +43,7 @@ class DHT {
    float convertCtoF(float);
    float convertFtoC(float);
    float computeHeatIndex(float temperature, float percentHumidity, bool isFahrenheit=true);
-   float computeAbsoluteHumidity(float temperature, float percentHumidity);
+   // float computeAbsoluteHumidity(float temperature, float percentHumidity);
    float readHumidity(bool force=false);
    boolean read(bool force=false);
 
