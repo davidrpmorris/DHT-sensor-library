@@ -141,6 +141,8 @@ float DHT::computeAbsoluteHumidity(float temperature, float percentHumidity) {
 
   saturationVapourPressure = A * pow(10, exponent);
 
+  float vapourPressure;
+
   vapourPressure = percentHumidity * saturationVapourPressure;
 
   // C constant is g.K/J
