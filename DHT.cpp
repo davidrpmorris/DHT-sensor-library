@@ -126,24 +126,28 @@ float DHT::computeAbsoluteHumidity(float temperature, float percentHumidity) {
   float ah;
 
   // Constants for saturation vapour pressure calculation
-  Tn = 240.7263
+  const float Tn = 240.7263;
 
-  m = 7.591386
+  const float m = 7.591386;
 
-  exponent = m * temperature / (temperature + Tn)
+  float exponent;
 
-  A = 6.116441
+  exponent = m * temperature / (temperature + Tn);
+
+  const float A = 6.116441;
 
   // saturation vapour pressure in hPa
-  saturationVapourPressure = A * pow(10, exponent)
+  float saturationVapourPressure;
 
-  vapourPressure = percentHumidity * saturationVapourPressure
+  saturationVapourPressure = A * pow(10, exponent);
+
+  vapourPressure = percentHumidity * saturationVapourPressure;
 
   // C constant is g.K/J
-  C = 2.16679
+  const float C = 2.16679;
 
   // absolute humidity in g/m3
-  ah = C * vapourPressure / temperature
+  ah = C * vapourPressure / temperature;
 
   return ah;
 }
